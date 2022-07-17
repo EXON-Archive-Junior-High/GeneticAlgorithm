@@ -1,7 +1,9 @@
 import { Tagger } from './character/Tagger.js'
+import { Feed } from './character/Feed.js'
 
 class App {
     taggersNumber = 5
+    feedsNumber = 10
 
     constructor() {
         this.canvas = document.createElement('canvas')
@@ -14,6 +16,11 @@ class App {
         this.taggers = []
         for (let i = 0; i < this.taggersNumber; i++) {
             this.taggers.push(new Tagger(this.stageWidth, this.stageHeight))
+        }
+
+        this.feeds = []
+        for (let i = 0; i < this.feedsNumber; i++) {
+            this.feeds.push(new Feed(this.stageWidth, this.stageHeight))
         }
         
         window.requestAnimationFrame(this.animate.bind(this))
@@ -35,6 +42,11 @@ class App {
         
         for (let i = 0; i < this.taggersNumber; i++) {
             this.taggers[i].draw(this.ctx, this.stageWidth, this.stageHeight)
+        }
+
+        this.ctx.fillStyle = '#d55252'
+        for (let i = 0; i < this.feedsNumber; i++) {
+            this.feeds[i].draw(this.ctx, this.stageWidth, this.stageHeight)
         }
     }
 }

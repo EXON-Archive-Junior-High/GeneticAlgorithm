@@ -11,7 +11,6 @@ export class Tagger {
         this.h = this.taggersHeight
         this.x = Math.floor(Math.random() * (stageWidth - this.w))
         this.y = Math.floor(Math.random() * (stageHeight - this.h))
-        
     }
 
     draw(ctx, stageWidth, stageHeight) {
@@ -33,6 +32,7 @@ export class Tagger {
         }
 
         ctx.fillStyle = '#5383e8'
+        ctx.beginPath()
         ctx.fillRect(this.x, this.y, this.w, this.h)
     }
 }
