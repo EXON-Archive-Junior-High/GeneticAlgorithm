@@ -4,6 +4,8 @@ import { Feed } from './character/Feed.js'
 class App {
     taggersNumber = 5
     feedsNumber = 10
+    generationCycle = 5000
+    frame = 0
 
     constructor() {
         this.canvas = document.createElement('canvas')
@@ -41,6 +43,14 @@ class App {
 
     animate(t) {
         window.requestAnimationFrame(this.animate.bind(this))
+
+        frame++
+
+        if (this.frame >= this.generationCycle) {
+            for (let i = 0; i < this.taggersNumber; i++) {
+                this.taggers[i].eatenFeedsNumber //여기서 부터 가장 잘먹은 놈만 살아남고 걔의 후손을 만들면 됨. 다른건 삭제하고
+            }
+        }
 
         this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight)
         
