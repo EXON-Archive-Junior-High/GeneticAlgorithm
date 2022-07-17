@@ -1,17 +1,14 @@
 export class Tagger {
-    taggersSpeed = 5
-    taggersHeight = 50
-    taggersWidth = 50
     eatenFeedsNumber = 0
 
-    constructor(stageWidth, stageHeight) {
-        this.vx = this.taggersSpeed
-        this.vy = this.taggersSpeed
+    constructor(stageWidth, stageHeight, taggerWidth = 50, taggerHeight = 50, taggerSpeedX = 5, taggerSpeedY = 5) {
+        this.vx = taggerSpeedX
+        this.vy = taggerSpeedY
 
-        this.w = this.taggersWidth
-        this.h = this.taggersHeight
-        this.x = Math.floor(Math.random() * (stageWidth - this.w))
-        this.y = Math.floor(Math.random() * (stageHeight - this.h))
+        this.taggerWidth = taggerWidth
+        this.taggerHeight = taggerHeight
+        this.x = Math.floor(Math.random() * (stageWidth - this.taggerWidth))
+        this.y = Math.floor(Math.random() * (stageHeight - this.taggerHeight))
     }
 
     draw(ctx, stageWidth, stageHeight) {
@@ -19,9 +16,9 @@ export class Tagger {
         this.y += this.vy
 
         const minX = 0
-        const maxX = stageWidth - this.w
+        const maxX = stageWidth - this.taggerWidth
         const minY = 0
-        const maxY = stageHeight - this.h
+        const maxY = stageHeight - this.taggerHeight
         
         if (minX > this.x || maxX < this.x) {
             this.vx *= -1
@@ -34,13 +31,13 @@ export class Tagger {
 
         ctx.fillStyle = '#5383e8'
         ctx.beginPath()
-        ctx.fillRect(this.x, this.y, this.w, this.h)
+        ctx.fillRect(this.x, this.y, this.taggerWidth, this.taggerHeight)
     }
 
     eatFeed(feed) {
-        const minX = (feed.x - feed.radius) - this.taggersWidth
+        const minX = (feed.x - feed.radius) - this.taggerWidth
         const maxX = feed.x + feed.radius
-        const minY = (feed.y - feed.radius) - this.taggersHeight 
+        const minY = (feed.y - feed.radius) - this.taggerHeight 
         const maxY = feed.y + feed.radius
 
         if (minX <= this.x && maxX >= this.x && minY <= this.y && maxY >= this.y) {

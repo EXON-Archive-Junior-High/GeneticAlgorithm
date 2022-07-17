@@ -15,7 +15,11 @@ class App {
 
         this.taggers = []
         for (let i = 0; i < this.taggersNumber; i++) {
-            this.taggers.push(new Tagger(this.stageWidth, this.stageHeight))
+            const width = Math.floor(Math.random() * 80)
+            const height = Math.floor(Math.random() * 80)
+            const speedX = Math.floor(Math.random() * 10)
+            const speedY = Math.floor(Math.random() * 10)
+            this.taggers.push(new Tagger(this.stageWidth, this.stageHeight, width, height, speedX, speedY))
         }
 
         this.feeds = []
