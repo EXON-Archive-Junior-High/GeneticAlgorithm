@@ -6,7 +6,7 @@ class App {
         this.ctx = this.canvas.getContext('2d')
         document.body.appendChild(this.canvas)
 
-        this.tagger = new Tagger(this.stageWidth, this.stageHeight, 5, 100, 100, 50, 50)
+        this.tagger = new Tagger(5, 100, 100, 50, 50)
         
         window.addEventListener('resize', this.resize.bind(this), false)
         this.resize()
@@ -17,8 +17,10 @@ class App {
     resize() {
         this.stageWidth = document.body.clientWidth
         this.stageHeight = document.body.clientHeight
-        this.canvas.setAttribute("width", window.innerWidth)
-        this.canvas.setAttribute("height", window.innerWidth)
+
+        this.canvas.width = this.stageWidth * 2
+        this.canvas.height = this.stageHeight * 2
+        this.ctx.scale(2, 2)
     }
 
     animate(t) {
@@ -26,7 +28,7 @@ class App {
 
         this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight)
         
-        this.tagger.draw(this.ctx)
+        this.tagger.draw(this.ctx, this.stageWidth, this.stageHeight)
     }
 }
 

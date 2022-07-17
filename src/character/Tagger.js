@@ -1,5 +1,5 @@
 export class Tagger {
-    constructor(stageWidth, stageHeight, speed, x, y, w, h) {
+    constructor(speed, x, y, w, h) {
         this.vx = speed
         this.vy = speed
 
@@ -7,19 +7,16 @@ export class Tagger {
         this.y = y
         this.w = w
         this.h = h
-
-        this.stageWidth = stageWidth
-        this.stageHeight = stageHeight
     }
 
-    draw(ctx) {
+    draw(ctx, stageWidth, stageHeight) {
         this.x += this.vx
         this.y += this.vy
 
-        const minX = this.w
-        const maxX = this.stageWidth - this.w
-        const minY = this.h
-        const maxY = this.stageHeight - this.h
+        const minX = 0
+        const maxX = stageWidth - this.w
+        const minY = 0
+        const maxY = stageHeight - this.h
         
         if (minX > this.x || maxX < this.x) {
             this.vx *= -1
@@ -30,7 +27,7 @@ export class Tagger {
             this.y += this.vy
         }
 
-        ctx.fillStyle = 'green'
+        ctx.fillStyle = '#5383e8'
         ctx.fillRect(this.x, this.y, this.w, this.h)
     }
 }
