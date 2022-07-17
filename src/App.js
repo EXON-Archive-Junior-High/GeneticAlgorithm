@@ -6,11 +6,11 @@ class App {
         this.ctx = this.canvas.getContext('2d')
         document.body.appendChild(this.canvas)
 
-        this.tagger = new Tagger(5, 100, 100, 50, 50)
-        
         window.addEventListener('resize', this.resize.bind(this), false)
         this.resize()
 
+        this.tagger = new Tagger(this.stageWidth, this.stageHeight, 5, 50, 50)
+        
         window.requestAnimationFrame(this.animate.bind(this))
     }
 

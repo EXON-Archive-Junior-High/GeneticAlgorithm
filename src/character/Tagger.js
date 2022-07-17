@@ -1,10 +1,10 @@
 export class Tagger {
-    constructor(speed, x, y, w, h) {
+    constructor(stageWidth, stageHeight, speed, w, h) {
         this.vx = speed
         this.vy = speed
 
-        this.x = x
-        this.y = y
+        this.x = Math.floor(Math.random() * (stageWidth - w))
+        this.y = Math.floor(Math.random() * (stageHeight - h))
         this.w = w
         this.h = h
     }
