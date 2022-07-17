@@ -48,6 +48,16 @@ class App {
         for (let i = 0; i < this.feedsNumber; i++) {
             this.feeds[i].draw(this.ctx, this.stageWidth, this.stageHeight)
         }
+
+        for (let i = 0; i < this.taggersNumber; i++) {
+            for (let j = 0; j < this.feedsNumber; j++) {
+                const ifEat = this.taggers[i].eatFeed(this.feeds[j])
+                if (ifEat) {
+                    this.feeds.splice(j, 1)
+                    this.feeds.push(new Feed(this.stageWidth, this.stageHeight))
+                }
+            }
+        }
     }
 }
 

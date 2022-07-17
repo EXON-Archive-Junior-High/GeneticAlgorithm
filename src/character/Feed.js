@@ -1,5 +1,6 @@
 export class Feed {
     radius = 5
+
     constructor(stageWidth, stageHeight) {
         this.x = Math.floor(Math.random() * (stageWidth - this.radius))
         this.y = Math.floor(Math.random() * (stageHeight - this.radius))

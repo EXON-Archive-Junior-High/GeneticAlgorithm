@@ -2,6 +2,7 @@ export class Tagger {
     taggersSpeed = 5
     taggersHeight = 50
     taggersWidth = 50
+    eatenFeedsNumber = 0
 
     constructor(stageWidth, stageHeight) {
         this.vx = this.taggersSpeed
@@ -34,5 +35,17 @@ export class Tagger {
         ctx.fillStyle = '#5383e8'
         ctx.beginPath()
         ctx.fillRect(this.x, this.y, this.w, this.h)
+    }
+
+    eatFeed(feed) {
+        const minX = (feed.x - feed.radius) - this.taggersWidth
+        const maxX = feed.x + feed.radius
+        const minY = (feed.y - feed.radius) - this.taggersHeight 
+        const maxY = feed.y + feed.radius
+
+        if (minX <= this.x && maxX >= this.x && minY <= this.y && maxY >= this.y) {
+            this.eatenFeedsNumber += 1
+            return true
+        } else return false
     }
 }
