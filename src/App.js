@@ -1,6 +1,8 @@
 import { Tagger } from './character/Tagger.js'
 
 class App {
+    taggersNumber = 5
+
     constructor() {
         this.canvas = document.createElement('canvas')
         this.ctx = this.canvas.getContext('2d')
@@ -9,7 +11,10 @@ class App {
         window.addEventListener('resize', this.resize.bind(this), false)
         this.resize()
 
-        this.tagger = new Tagger(this.stageWidth, this.stageHeight, 5, 50, 50)
+        this.taggers = []
+        for (let i = 0; i < this.taggersNumber; i++) {
+            this.taggers.push(new Tagger(this.stageWidth, this.stageHeight))
+        }
         
         window.requestAnimationFrame(this.animate.bind(this))
     }
@@ -28,7 +33,9 @@ class App {
 
         this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight)
         
-        this.tagger.draw(this.ctx, this.stageWidth, this.stageHeight)
+        for (let i = 0; i < this.taggersNumber; i++) {
+            this.taggers[i].draw(this.ctx, this.stageWidth, this.stageHeight)
+        }
     }
 }
 
