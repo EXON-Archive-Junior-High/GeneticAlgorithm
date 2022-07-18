@@ -14,6 +14,17 @@ class App {
         this.ctx = this.canvas.getContext('2d')
         document.body.appendChild(this.canvas)
 
+        this.greatTaggersTitle = document.createElement('h2')
+        this.greatTaggersTitle.innerHTML = '전 세대의 우등한 유전자 (상위 4위)'
+        document.body.appendChild(this.greatTaggersTitle)
+        this.greatTaggers = []
+        for (let i = 0; i < this.greatTaggersNumber; i++) {
+            this.greatTaggers.push(document.createElement('p'))
+            this.greatTaggers[i].innerHTML = `${i}. ....`
+            document.body.appendChild(this.greatTaggers[i])
+        }
+        document.body.appendChild(document.createElement('br'))
+
         window.addEventListener('resize', this.resize.bind(this), false)
         this.resize()
 
@@ -54,7 +65,9 @@ class App {
                 return b.eatenFeedsNumber - a.eatenFeedsNumber
             })
             this.taggers = this.taggers.slice(0, this.greatTaggersNumber)
+            this.greatTaggersTitle.innerHTML = `${this.generation} 세대의 우등한 유전자 (상위 4위)`
             for (let i = 0; i < this.greatTaggersNumber; i++) {
+                this.greatTaggers[i].innerHTML = `<b>너비: </b>${this.taggers[i].taggerWidth}    <b>높이: </b>${this.taggers[i].taggerHeight}    <b>가로 속도: </b>${this.taggers[i].vx}    <b>세로 속도: </b>${this.taggers[i].vy}`
                 this.taggers[i].eatenFeedsNumber = 0
             }
             let j = 0
