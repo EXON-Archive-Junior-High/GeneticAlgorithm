@@ -77,8 +77,8 @@ class App {
                 if (j >= this.greatTaggersNumber) j = 0
                 const width = this.taggers[j].taggerWidth + Math.floor(Math.random() * 20) - 10 // +- 10
                 const height = this.taggers[j].taggerHeight + Math.floor(Math.random() * 20) - 10 // +- 10
-                const speedX = this.taggers[j].vx + Math.floor(Math.random() * 2) - 4 // +- 2
-                const speedY = this.taggers[j].vy + Math.floor(Math.random() * 2) - 4 // +- 2
+                const speedX = this.taggers[j].vx + Math.floor(Math.random() * 2) - 1 // +- 2
+                const speedY = this.taggers[j].vy + Math.floor(Math.random() * 2) - 1 // +- 2
                 this.taggers.push(new Tagger(this.stageWidth, this.stageHeight, width, height, speedX, speedY))
                 j += 1
             }
