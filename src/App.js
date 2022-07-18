@@ -2,10 +2,12 @@ import { Tagger } from './character/Tagger.js'
 import { Feed } from './character/Feed.js'
 
 class App {
-    taggersNumber = 5
-    feedsNumber = 10
-    generationCycle = 5000
+    taggersNumber = 40
+    feedsNumber = 30
+    generationCycle = 500
+    greatTaggersNumber = 4
     frame = 0
+    generation = 0
 
     constructor() {
         this.canvas = document.createElement('canvas')
@@ -17,8 +19,8 @@ class App {
 
         this.taggers = []
         for (let i = 0; i < this.taggersNumber; i++) {
-            const width = Math.floor(Math.random() * 80)
-            const height = Math.floor(Math.random() * 80)
+            const width = Math.floor(Math.random() * 30)
+            const height = Math.floor(Math.random() * 30)
             const speedX = Math.floor(Math.random() * 10)
             const speedY = Math.floor(Math.random() * 10)
             this.taggers.push(new Tagger(this.stageWidth, this.stageHeight, width, height, speedX, speedY))
@@ -44,12 +46,31 @@ class App {
     animate(t) {
         window.requestAnimationFrame(this.animate.bind(this))
 
-        frame++
+        this.frame++
 
         if (this.frame >= this.generationCycle) {
-            for (let i = 0; i < this.taggersNumber; i++) {
-                this.taggers[i].eatenFeedsNumber //여기서 부터 가장 잘먹은 놈만 살아남고 걔의 후손을 만들면 됨. 다른건 삭제하고
+            console.log(`${this.generation}세대`)
+            this.taggers.sort((a, b) => {
+                return b.eatenFeedsNumber - a.eatenFeedsNumber
+            })
+            this.taggers = this.taggers.slice(0, this.greatTaggersNumber)
+            for (let i = 0; i < this.greatTaggersNumber; i++) {
+                this.taggers[i].eatenFeedsNumber = 0
             }
+            let j = 0
+            for (let i = 0; i < this.taggersNumber - this.greatTaggersNumber; i++) {
+                if (j >= this.greatTaggersNumber) j = 0
+                const width = this.taggers[j].taggerWidth + Math.floor(Math.random() * 20) - 10 // +- 10
+                const height = this.taggers[j].taggerHeight + Math.floor(Math.random() * 20) - 10 // +- 10
+                const speedX = this.taggers[j].vx + Math.floor(Math.random() * 2) - 4 // +- 2
+                const speedY = this.taggers[j].vy + Math.floor(Math.random() * 2) - 4 // +- 2
+                this.taggers.push(new Tagger(this.stageWidth, this.stageHeight, width, height, speedX, speedY))
+                j += 1
+            }
+            this.frame = 0
+            this.generation += 1
+            const text = document.getElementById('generation')
+            text.innerText = `${this.generation} 세대`
         }
 
         this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight)
