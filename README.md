@@ -1,7 +1,7 @@
 # Genetic Algorithm (유전 알고리즘)
 유전 알고리즘 구현하기
 
-<video src='https://www.youtube.com/watch?v=RJ7jgCc2RCs' width=800/>
+<video src='https://www.youtube.com/watch?v=RJ7jgCc2RCs' width=800></video>
 
 ## 설명
 술래(Taggers)들이 먹이(Feed)를 먹으면서 가장 많이 먹은 상위 10%만 살아남는다.
