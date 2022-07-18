@@ -16,11 +16,13 @@ class App {
 
         this.greatTaggersTitle = document.createElement('h2')
         this.greatTaggersTitle.innerHTML = '전 세대의 우등한 유전자 (상위 4위)'
+        this.greatTaggersTitle.style.cssText = 'font-size: 30px; font-weight: 900; margin-bottom: 10px; margin-left: 20px;'
         document.body.appendChild(this.greatTaggersTitle)
         this.greatTaggers = []
         for (let i = 0; i < this.greatTaggersNumber; i++) {
             this.greatTaggers.push(document.createElement('p'))
             this.greatTaggers[i].innerHTML = `${i}. ....`
+            this.greatTaggers[i].style.cssText = 'margin-left: 20px; margin-top: 5px;'
             document.body.appendChild(this.greatTaggers[i])
         }
         document.body.appendChild(document.createElement('br'))
