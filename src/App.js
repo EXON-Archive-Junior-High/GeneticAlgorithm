@@ -69,7 +69,7 @@ class App {
             this.taggers = this.taggers.slice(0, this.greatTaggersNumber)
             this.greatTaggersTitle.innerHTML = `${this.generation} 세대의 우등한 유전자 (상위 4위)`
             for (let i = 0; i < this.greatTaggersNumber; i++) {
-                this.greatTaggers[i].innerHTML = `<b>너비: </b>${this.taggers[i].taggerWidth}    <b>높이: </b>${this.taggers[i].taggerHeight}    <b>가로 속도: </b>${this.taggers[i].vx}    <b>세로 속도: </b>${this.taggers[i].vy}`
+                this.greatTaggers[i].innerHTML = `<b>너비: </b>${this.taggers[i].taggerWidth}    <b>높이: </b>${this.taggers[i].taggerHeight}    <b>가로 속도: </b>${this.taggers[i].vx}    <b>세로 속도: </b>${this.taggers[i].vy}    =>    <b>먹은 개수: </b>${this.taggers[i].eatenFeedsNumber}`
                 this.taggers[i].eatenFeedsNumber = 0
             }
             let j = 0
