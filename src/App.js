@@ -21,8 +21,8 @@ class App {
         for (let i = 0; i < this.taggersNumber; i++) {
             const width = Math.floor(Math.random() * 30)
             const height = Math.floor(Math.random() * 30)
-            const speedX = Math.floor(Math.random() * 10)
-            const speedY = Math.floor(Math.random() * 10)
+            const speedX = Math.floor(Math.random() * 5)
+            const speedY = Math.floor(Math.random() * 5)
             this.taggers.push(new Tagger(this.stageWidth, this.stageHeight, width, height, speedX, speedY))
         }
 
