@@ -1,9 +1,11 @@
-import { Tagger } from './character/Tagger.js'
-import { Feed } from './character/Feed.js'
+import { Tagger } from './asset/Tagger.js'
+import { Block } from './asset/Block.js'
+import { Feed } from './asset/Feed.js'
 
 class App {
     taggersNumber = 40
     feedsNumber = 30
+    blocksNumber = 10
     generationCycle = 500
     greatTaggersNumber = 4
     frame = 0
@@ -37,6 +39,11 @@ class App {
             const speedX = Math.floor(Math.random() * 5)
             const speedY = Math.floor(Math.random() * 5)
             this.taggers.push(new Tagger(this.stageWidth, this.stageHeight, width, height, speedX, speedY))
+        }
+
+        this.blocks = []
+        for (let i = 0; i < this.blocksNumber; i++) {
+            this.blocks.push(new Block(this.stageWidth, this.stageHeight))
         }
 
         this.feeds = []
@@ -91,12 +98,16 @@ class App {
         this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight)
         
         for (let i = 0; i < this.taggersNumber; i++) {
-            this.taggers[i].draw(this.ctx, this.stageWidth, this.stageHeight)
+            this.taggers[i].draw(this.ctx, this.blocks, this.stageWidth, this.stageHeight)
+        }
+
+        for (let i = 0; i < this.blocksNumber; i++) {
+            this.blocks[i].draw(this.ctx)
         }
 
         this.ctx.fillStyle = '#d55252'
         for (let i = 0; i < this.feedsNumber; i++) {
-            this.feeds[i].draw(this.ctx, this.stageWidth, this.stageHeight)
+            this.feeds[i].draw(this.ctx, this.blocks)
         }
 
         for (let i = 0; i < this.taggersNumber; i++) {
