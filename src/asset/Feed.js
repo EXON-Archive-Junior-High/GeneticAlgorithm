@@ -15,7 +15,6 @@ export class Feed {
             const minY = this.y - this.radius - blocks[i].blockHeight
             const maxY = this.y + this.radius
             if (blocks[i].x > minX && blocks[i].x < maxX && blocks[i].y > minY && blocks[i].y < maxY) {
-                console.log('겹쳐서 바꿈')
                 this.x = Math.floor(Math.random() * (this.stageWidth - this.radius))
                 this.y = Math.floor(Math.random() * (this.stageHeight - this.radius))
                 this.draw(ctx, blocks)

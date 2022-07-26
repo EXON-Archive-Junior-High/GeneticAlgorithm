@@ -1,7 +1,7 @@
 export class Tagger {
     eatenFeedsNumber = 0
 
-    constructor(stageWidth, stageHeight, taggerWidth = 50, taggerHeight = 50, taggerSpeedX = 5, taggerSpeedY = 5) {
+    constructor(blocks, stageWidth, stageHeight, taggerWidth = 50, taggerHeight = 50, taggerSpeedX = 5, taggerSpeedY = 5) {
         this.vx = taggerSpeedX
         this.vy = taggerSpeedY
 
@@ -9,6 +9,23 @@ export class Tagger {
         this.taggerHeight = taggerHeight
         this.x = Math.floor(Math.random() * (stageWidth - this.taggerWidth))
         this.y = Math.floor(Math.random() * (stageHeight - this.taggerHeight))
+        
+        this.setPosition(blocks, stageWidth, stageHeight)
+    }
+
+    setPosition(blocks) {
+        for (let i = 0; i < blocks.length; i++) {
+            const minX = this.x - this.radius - blocks[i].blockWidth
+            const maxX = this.x + this.radius
+            const minY = this.y - this.radius - blocks[i].blockHeight
+            const maxY = this.y + this.radius
+            if (blocks[i].x > minX && blocks[i].x < maxX && blocks[i].y > minY && blocks[i].y < maxY) {
+                this.x = Math.floor(Math.random() * (stageWidth - this.taggerWidth))
+                this.y = Math.floor(Math.random() * (stageHeight - this.taggerHeight))
+                this.setPosition(blocks)
+                return
+            }
+        }
     }
 
     draw(ctx, blocks, stageWidth, stageHeight) {
@@ -51,7 +68,6 @@ export class Tagger {
             }
         }
         
-
         ctx.fillStyle = '#5383e8'
         ctx.beginPath()
         ctx.fillRect(this.x, this.y, this.taggerWidth, this.taggerHeight)

@@ -32,18 +32,18 @@ class App {
         window.addEventListener('resize', this.resize.bind(this), false)
         this.resize()
 
+        this.blocks = []
+        for (let i = 0; i < this.blocksNumber; i++) {
+            this.blocks.push(new Block(this.stageWidth, this.stageHeight))
+        }
+
         this.taggers = []
         for (let i = 0; i < this.taggersNumber; i++) {
             const width = Math.floor(Math.random() * 30)
             const height = Math.floor(Math.random() * 30)
             const speedX = Math.floor(Math.random() * 5)
             const speedY = Math.floor(Math.random() * 5)
-            this.taggers.push(new Tagger(this.stageWidth, this.stageHeight, width, height, speedX, speedY))
-        }
-
-        this.blocks = []
-        for (let i = 0; i < this.blocksNumber; i++) {
-            this.blocks.push(new Block(this.stageWidth, this.stageHeight))
+            this.taggers.push(new Tagger(this.blocks, this.stageWidth, this.stageHeight, width, height, speedX, speedY))
         }
 
         this.feeds = []
@@ -86,7 +86,7 @@ class App {
                 const height = this.taggers[j].taggerHeight + Math.floor(Math.random() * 20) - 10 // +- 10
                 const speedX = this.taggers[j].vx + Math.floor(Math.random() * 2) - 1 // +- 2
                 const speedY = this.taggers[j].vy + Math.floor(Math.random() * 2) - 1 // +- 2
-                this.taggers.push(new Tagger(this.stageWidth, this.stageHeight, width, height, speedX, speedY))
+                this.taggers.push(new Tagger(this.blocks, this.stageWidth, this.stageHeight, width, height, speedX, speedY))
                 j += 1
             }
             this.frame = 0
