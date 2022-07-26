@@ -13,12 +13,12 @@ export class Tagger {
         this.setPosition(blocks, stageWidth, stageHeight)
     }
 
-    setPosition(blocks) {
+    setPosition(blocks, stageWidth, stageHeight) {
         for (let i = 0; i < blocks.length; i++) {
-            const minX = this.x - this.radius - blocks[i].blockWidth
-            const maxX = this.x + this.radius
-            const minY = this.y - this.radius - blocks[i].blockHeight
-            const maxY = this.y + this.radius
+            const minX = this.x - blocks[i].blockWidth
+            const maxX = this.x + this.taggerWidth
+            const minY = this.y - blocks[i].blockHeight
+            const maxY = this.y + this.taggerHeight
             if (blocks[i].x > minX && blocks[i].x < maxX && blocks[i].y > minY && blocks[i].y < maxY) {
                 this.x = Math.floor(Math.random() * (stageWidth - this.taggerWidth))
                 this.y = Math.floor(Math.random() * (stageHeight - this.taggerHeight))
